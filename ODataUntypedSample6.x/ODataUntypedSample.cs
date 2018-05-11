@@ -61,21 +61,21 @@ namespace ODataUntypedSample
 			#endregion
 
 			#region Creating 1:N relationship (Customer -> Product)
-			var producGridInfo = new EdmNavigationPropertyInfo
+			var productGrid = new EdmNavigationPropertyInfo
 			{
 				ContainsTarget = false,
 				Name = "Products",
 				Target = productType,
 				TargetMultiplicity = EdmMultiplicity.Many,
 			};
-			var productsProperty = customerType.AddUnidirectionalNavigation(producGridInfo);
+			var CoustomersProduct = customerType.AddUnidirectionalNavigation(productGrid);
 			#endregion
 
 			#region Customer ref field
 			var CustomerLookup = productType.AddUnidirectionalNavigation(new EdmNavigationPropertyInfo
 			{
 				ContainsTarget = false,
-				Name = "CustomerLookup",
+				Name = "Customer",
 				Target = customerType,
 				TargetMultiplicity = EdmMultiplicity.One,
 				DependentProperties = new[] { productCustomerId },
@@ -89,7 +89,8 @@ namespace ODataUntypedSample
 
 			EdmEntitySet Customers = container.AddEntitySet("Customers", customerType);
 			EdmEntitySet Products = container.AddEntitySet("Products", productType);
-			//Customers.AddNavigationTarget(productsProperty, Products);
+			Customers.AddNavigationTarget(CoustomersProduct, Products);
+			Products.AddNavigationTarget(CustomerLookup, Customers);
 
 			return model;
 		}

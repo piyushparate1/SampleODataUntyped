@@ -26,7 +26,7 @@ namespace ODataUntypedSample.Controllers
 			customer2.TrySetPropertyValue("FullName", "Pole Sam two");
 			customer2.TrySetPropertyValue("Products", GetChildProduct());
 			collection.Add(customer2);
-
+			
 			return collection;
 		}
 
