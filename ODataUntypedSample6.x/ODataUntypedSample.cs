@@ -89,7 +89,7 @@ namespace ODataUntypedSample
 
 			EdmEntitySet Customers = container.AddEntitySet("Customers", customerType);
 			EdmEntitySet Products = container.AddEntitySet("Products", productType);
-			Customers.AddNavigationTarget(productsProperty, Products);
+			//Customers.AddNavigationTarget(productsProperty, Products);
 
 			return model;
 		}
