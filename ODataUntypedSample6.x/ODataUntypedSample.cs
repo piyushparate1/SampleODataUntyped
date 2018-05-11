@@ -43,7 +43,7 @@ namespace ODataUntypedSample
 
 			var customerType = new EdmEntityType("NS", "Customer");
 			var customerIdProperty =
-			customerType.AddStructuralProperty("CustomerId", EdmPrimitiveTypeKind.Int32);
+			customerType.AddStructuralProperty("CustomerId", EdmPrimitiveTypeKind.Guid);
 			customerType.AddStructuralProperty("FullName", EdmPrimitiveTypeKind.String);
 			customerType.AddKeys(new IEdmStructuralProperty[] { customerIdProperty });
 			model.AddElement(customerType);
@@ -53,8 +53,8 @@ namespace ODataUntypedSample
 			#region Building Product schema
 
 			var productType = new EdmEntityType("NS", "Product");
-			var productIdProperty = productType.AddStructuralProperty("ProductId", EdmPrimitiveTypeKind.Int32);
-			var productCustomerId = productType.AddStructuralProperty("CustomerIdRef", EdmPrimitiveTypeKind.Int32);
+			var productIdProperty = productType.AddStructuralProperty("ProductId", EdmPrimitiveTypeKind.Guid);
+			var productCustomerId = productType.AddStructuralProperty("CustomerIdRef", EdmPrimitiveTypeKind.Guid);
 			productType.AddKeys(productIdProperty);
 			model.AddElement(productType);
 
